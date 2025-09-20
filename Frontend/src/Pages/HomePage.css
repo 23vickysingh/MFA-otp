@@ -1,0 +1,77 @@
+/* General body styling for the dark theme */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+/* Main container to center content vertically and horizontally */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+}
+
+/* Container for the buttons */
+.button-container {
+  display: flex;
+  gap: 20px; /* Space between buttons */
+}
+
+/* Base button styling */
+.btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Primary button style (Sign In) */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: white;
+  color: #007bff;
+  transform: scale(1.05);
+}
+
+/* Secondary button style (Sign Up) */
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+
+.btn-secondary:hover {
+  background-color: white;
+  color: #1a1a1a;
+  transform: scale(1.05);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

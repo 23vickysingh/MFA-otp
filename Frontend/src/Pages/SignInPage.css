@@ -1,0 +1,80 @@
+/* Container to center the form, using the same dark background */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #1a1a1a;
+}
+
+/* The form card itself */
+.signin-form {
+  background-color: #2c2c2c;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.signin-form h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #f0f0f0;
+  font-size: 2rem;
+}
+
+/* Reusing form-group styles which are generic */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #a0a0a0;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* A dedicated button style for the form */
+.signin-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  margin-top: 10px;
+}
+
+.signin-btn:hover {
+  background-color: white;
+  color: #007bff;
+  transform: scale(1.02);
+}
