@@ -27,6 +27,8 @@ const SignInPage = () => {
 
         const data = await response.json();
 
+        console.log(data);
+
         if (!response.ok) {
           throw new Error(data.msg || 'Failed to sign in');
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SignUpPage.css';
 
 import { useNavigate } from 'react-router-dom';
@@ -18,14 +18,19 @@ const SignUpPage = () => {
     e.preventDefault();
     setError('');
 
-    if (!showOtpInput) {  // to sign up
+    if (!showOtpInput) { // to sign up
+      if (password !== confirmPassword) {
+        setError('Passwords do not match');
+        return;
+      }
+
       try { 
         const response = await fetch('http://localhost:5000/api/auth/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ userName, email, password})
+          body: JSON.stringify({ username: userName, email, password})
         });
 
         const data = await response.json();
@@ -34,7 +39,7 @@ const SignUpPage = () => {
           throw new Error(data.msg || 'Failed to sign up');
         }
 
-        showOtpInput(true);
+        setShowOtpInput(true);
 
       } catch (err) {
         setError(err.message);
@@ -69,6 +74,7 @@ const SignUpPage = () => {
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
+        {error && <p className="error-message">{error}</p>}
         {!showOtpInput ? (
           <>
             <h2>Create Account</h2>

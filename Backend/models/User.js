@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -24,10 +24,9 @@ const UserSchema = new mongoose.Schema({
   otpExpires: {
     type: Date,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+}, {
+  // This option automatically adds `createdAt` and `updatedAt` fields
+  timestamps: true
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', userSchema);

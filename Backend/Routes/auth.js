@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const middle = require('../middleware/middle');
 
 /**
  * @route   POST /api/auth/register
@@ -77,6 +78,7 @@ router.post('/login', async (req, res) => {
   try {
     // Check for user by email
     const user = await User.findOne({ email });
+    console.log(user);
     if (!user || !user.isVerified) {
       // Use a generic message for security to prevent email enumeration
       // We also check for verification here. If not verified, they can't log in.
@@ -118,6 +120,8 @@ router.post('/verify-otp', async (req, res) => {
   if (!email || !otp) {
     return res.status(400).json({ msg: 'Please provide email and OTP' });
   }
+
+  console.log(email, otp);
 
   try {
     const user = await User.findOne({ email });
@@ -164,5 +168,23 @@ router.post('/verify-otp', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+/**
+ * @route   GET /api/auth/user
+ * @desc    Get logged in user's data (Protected Route)
+ * @access  Private
+ */
+router.get('/user', middle, async (req, res) => { // <-- 2. Use the middleware here
+  try {
+    // The 'auth' middleware has already verified the token and added the user's ID to req.user.id
+    // We fetch the user from the database but exclude the password for security.
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 module.exports = router;
